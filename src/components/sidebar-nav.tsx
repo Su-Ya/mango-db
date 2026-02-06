@@ -1,0 +1,181 @@
+"use client"
+
+import * as React from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { Home, User, Search, FileText, ChevronRight } from "lucide-react"
+import { Article } from "@/lib/types"
+import {
+	Sidebar,
+	SidebarContent,
+	SidebarFooter,
+	SidebarGroup,
+	SidebarGroupContent,
+	SidebarGroupLabel,
+	SidebarHeader,
+	SidebarMenu,
+	SidebarMenuButton,
+	SidebarMenuItem,
+	SidebarMenuSub,
+	SidebarMenuSubButton,
+	SidebarMenuSubItem,
+	SidebarRail,
+	SidebarTrigger,
+} from "@/components/ui/sidebar"
+import {
+	Collapsible,
+	CollapsibleContent,
+	CollapsibleTrigger,
+} from "@/components/ui/collapsible"
+import { Badge } from "@/components/ui/badge"
+
+interface SidebarNavProps extends React.ComponentProps<typeof Sidebar> {
+	articles?: Article[]
+}
+
+export function SidebarNav({ articles = [], ...props }: SidebarNavProps) {
+	const pathname = usePathname()
+
+	// Group articles by Year > Month
+	const archive = React.useMemo(() => {
+		const groups: Record<string, Record<string, Article[]>> = {}
+
+		articles.forEach(article => {
+			const date = new Date(article.publishedAt)
+			if (isNaN(date.getTime())) return
+
+			const year = date.getFullYear().toString()
+			const month = (date.getMonth() + 1).toString().padStart(2, '0')
+
+			if (!groups[year]) groups[year] = {}
+			if (!groups[year][month]) groups[year][month] = []
+
+			groups[year][month].push(article)
+		})
+
+		// Sort years desc
+		return Object.keys(groups).sort((a, b) => b.localeCompare(a)).map(year => ({
+			year,
+			months: Object.keys(groups[year]).sort((a, b) => b.localeCompare(a)).map(month => ({
+				month,
+				articles: groups[year][month]
+			}))
+		}))
+	}, [articles])
+
+	return (
+		<Sidebar {...props}>
+			<SidebarHeader>
+				<SidebarMenu>
+					<SidebarMenuItem>
+						<div className="flex items-center gap-2 px-2 py-4">
+							<div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+								<FileText className="size-4" />
+							</div>
+							<div className="grid flex-1 text-left text-sm leading-tight">
+								<span className="truncate font-semibold">My Tech Blog</span>
+								<span className="truncate text-xs">Engineering Journey</span>
+							</div>
+						</div>
+					</SidebarMenuItem>
+				</SidebarMenu>
+			</SidebarHeader>
+
+			<SidebarContent>
+				{/* Main Navigation */}
+				<SidebarGroup>
+					<SidebarGroupLabel>Navigation</SidebarGroupLabel>
+					<SidebarGroupContent>
+						<SidebarMenu>
+							<SidebarMenuItem>
+								<SidebarMenuButton asChild isActive={pathname === "/"}>
+									<Link href="/">
+										<Home />
+										<span>Home</span>
+									</Link>
+								</SidebarMenuButton>
+							</SidebarMenuItem>
+							<SidebarMenuItem>
+								<SidebarMenuButton asChild isActive={pathname === "/articles"}>
+									<Link href="/articles">
+										<FileText />
+										<span>All Articles</span>
+									</Link>
+								</SidebarMenuButton>
+							</SidebarMenuItem>
+							<SidebarMenuItem>
+								<SidebarMenuButton asChild isActive={pathname === "/about"}>
+									<Link href="/about">
+										<User />
+										<span>About Me</span>
+									</Link>
+								</SidebarMenuButton>
+							</SidebarMenuItem>
+							<SidebarMenuItem>
+								<SidebarMenuButton onClick={() => alert("Search not implemented yet")} tooltip="Search">
+									<Search />
+									<span>Search</span>
+								</SidebarMenuButton>
+							</SidebarMenuItem>
+						</SidebarMenu>
+					</SidebarGroupContent>
+				</SidebarGroup>
+
+				{/* Archive Tree */}
+				<SidebarGroup>
+					<SidebarGroupLabel>Archive</SidebarGroupLabel>
+					<SidebarGroupContent>
+						<SidebarMenu>
+							{archive.map((yearGroup) => (
+								<Collapsible key={yearGroup.year} defaultOpen className="group/collapsible">
+									<SidebarMenuItem>
+										<CollapsibleTrigger asChild>
+											<SidebarMenuButton tooltip={yearGroup.year}>
+												<ChevronRight className="transition-transform group-data-[state=open]/collapsible:rotate-90" />
+												<span>{yearGroup.year}</span>
+											</SidebarMenuButton>
+										</CollapsibleTrigger>
+										<CollapsibleContent>
+											<SidebarMenuSub>
+												{yearGroup.months.map((monthGroup) => (
+													<Collapsible key={monthGroup.month} className="group/month-collapsible">
+														<SidebarMenuSubItem>
+															<CollapsibleTrigger asChild>
+																<SidebarMenuSubButton>
+																	<span className="flex-1">{monthGroup.month}</span>
+																	<Badge variant="secondary" className="text-[10px] h-4 px-1">{monthGroup.articles.length}</Badge>
+																</SidebarMenuSubButton>
+															</CollapsibleTrigger>
+															<CollapsibleContent>
+																<SidebarMenuSub>
+																	{monthGroup.articles.map(article => (
+																		<SidebarMenuSubItem key={article.id}>
+																			<SidebarMenuSubButton asChild isActive={pathname === `/articles/${article.slug}`}>
+																				<Link href={`/articles/${article.slug}`}>
+																					<span>{article.title}</span>
+																				</Link>
+																			</SidebarMenuSubButton>
+																		</SidebarMenuSubItem>
+																	))}
+																</SidebarMenuSub>
+															</CollapsibleContent>
+														</SidebarMenuSubItem>
+													</Collapsible>
+												))}
+											</SidebarMenuSub>
+										</CollapsibleContent>
+									</SidebarMenuItem>
+								</Collapsible>
+							))}
+						</SidebarMenu>
+					</SidebarGroupContent>
+				</SidebarGroup>
+			</SidebarContent>
+
+			<SidebarFooter>
+				{/* Optional Footer content */}
+			</SidebarFooter>
+			<SidebarRail />
+		</Sidebar>
+	)
+}
