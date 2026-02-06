@@ -6,6 +6,7 @@
 - **Runtime**: Node.js v22.22.0+
 - **Package Manager**: NPM v10.9.4+
 - **Editor**: VS Code (建議安裝 ESLint, Prettier, Tailwind CSS Intellisense 套件)
+- **OpenSpec**: v1.1.1 (Verify with `npx openspec --version`)
 
 ## 2. Git 工作流 (Git Workflow)
 本專案採用簡化的 Feature Branch Workflow。
@@ -30,6 +31,17 @@
 git commit -m "feat(sidebar): add responsive mobile menu"
 ```
 
+**Long Commit Message (多行訊息)**:
+若訊息內容較長，建議透過檔案進行提交，避免 Shell 換行問題：
+
+1. 建立訊息檔：寫入 `.git_commit_msg`
+2. 執行指令：`git commit -F .git_commit_msg && rm .git_commit_msg`
+
+> **指令詳解**：
+> - `git commit -F <file>`: `-F` 代表 File，讓 Git 直接讀取檔案內容作為提交訊息，適合處理多行文字或特殊符號。
+> - `&&`: 邏輯 AND，確保 **Commit 成功後** 才會執行刪除指令。若提交失敗，檔案會保留以便修正。
+> - `rm <file>`: 刪除暫存的訊息檔，保持目錄整潔。
+
 ## 3. 程式碼規範 (Coding Style)
 - **TypeScript**: 強型別 (Strict Mode)，避免使用 `any`。
 - **Naming**:
@@ -46,7 +58,8 @@ git commit -m "feat(sidebar): add responsive mobile menu"
 │   ├── Spec.md                 # 產品總論與需求大綱
 │   ├── DataSpec.md             # 資料結構與 API 規格
 │   ├── ComponentSpec.md        # UI 元件與頁面規格
-│   └── DevGuide.md             # 開發規範與環境指南
+│   ├── DevGuide.md             # 開發規範與環境指南
+│   └── Tasks.md                # 專案任務與進度追蹤
 ├── src/
 │   ├── app/                    # Next.js App Router 頁面與佈局
 │   │   ├── page.tsx            # 首頁 (最新與熱門文章)
