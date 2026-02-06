@@ -2,8 +2,8 @@
 
 - [/] 專案建置 (Project Setup)
     - [x] 初始化 Next.js 專案
-    - [/] 設定 Tailwind CSS 和 ShadCN UI
-    - [ ] 建立初始目錄結構
+    - [x] 設定 Tailwind CSS 和 ShadCN UI
+    - [x] 建立初始目錄結構
 
 - [x] 規格驅動開發 (Spec-Driven Development)
     - [x] 建立 OpenSpec 結構 (.openspec/Spec.md)
