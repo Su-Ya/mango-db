@@ -11,7 +11,7 @@
     - [x] 設計 UI 元件規格
 
 - [ ] 核心功能實作 (Core Implementation - Specs Ready)
-    - [ ] 實作 HackMD 資料獲取 (API/Mock)
+    - [x] 實作 HackMD 資料獲取 (API/Mock)
     - [ ] 開發主版面配置 (Main Layout) 和側邊欄 (Sidebar)
     - [ ] 實作首頁 (Home Page)
     - [ ] 實作文章列表頁 (Article List Page)
