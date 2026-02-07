@@ -74,8 +74,9 @@
     - *Note*: HackMD API provides `viewCount`, used for popularity sorting.
 
 ### `ArticleListPage` (`/articles`)
-- **Layout**: Simple list of `ArticleCard` components.
-- **Pagination**: Optional (Load More / Infinite Scroll).
+- **Layout**: Simple list of `ArticleCard` components (Grid layout).
+- **Pagination**: Uses standard Pagination (12 items per page).
+- **Implementation**: Uses ShadCN `Pagination`.
 
 ### `ArticleDetailPage` (`/articles/[slug]`)
 - **Layout**:

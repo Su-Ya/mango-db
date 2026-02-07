@@ -13,13 +13,10 @@
 - [ ] 核心功能實作 (Core Implementation - Specs Ready)
     - [x] 實作 HackMD 資料獲取 (API/Mock)
     - [x] 開發主版面配置 (Main Layout) 和側邊欄 (Sidebar)
-    - [/] 實作首頁 (Home Page)
-        - [ ] **ArticleCard** (`src/components/article-card.tsx`)
-            - 使用 ShadCN Card + Badge + Avatar 實作
-        - [ ] **HomePage** (`src/app/page.tsx`)
-            - Latest: 最新 4-6 篇
-            - Popular: 觀看數最高 4 篇
-    - [ ] 實作文章列表頁 (Article List Page)
+    - [x] 實作首頁 (Home Page)
+    - [/] 實作文章列表頁 (Article List Page)
+        - [x] **Pagination UI**
+        - [x] **Article List Page** (`src/app/articles/page.tsx`)
     - [ ] 實作文章詳情頁與 Markdown 渲染 (Article Detail Page)
     - [ ] 實作關於我頁面 (About Page)
     - [ ] 實作搜尋功能 (Search Functionality)
