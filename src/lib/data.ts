@@ -61,7 +61,8 @@ export async function getAllArticles(): Promise<Article[]> {
 				author: {
 					name: data.user.name,
 					avatar: data.user.photo
-				}
+				},
+				viewCount: note.viewCount || 0,
 			} as Article;
 		}));
 

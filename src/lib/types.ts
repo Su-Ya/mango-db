@@ -14,6 +14,7 @@ export interface HackMDNote {
   publishedAt: string | null;
   shortId: string;
   userpath: string;
+  viewCount: number;
 }
 
 export interface HackMDMeta {
@@ -41,4 +42,5 @@ export interface Article {
     name: string;
     avatar: string;
   };
+  viewCount: number;
 }
