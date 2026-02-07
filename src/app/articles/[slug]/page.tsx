@@ -21,7 +21,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
 	const { slug } = await params
-	const article = await getArticleBySlug(slug)
+	const decodedSlug = decodeURIComponent(slug)
+	const article = await getArticleBySlug(decodedSlug)
 
 	if (!article) {
 		return { title: 'Article Not Found' }
@@ -35,7 +36,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ArticleDetailPage({ params }: PageProps) {
 	const { slug } = await params
-	const article = await getArticleBySlug(slug)
+	const decodedSlug = decodeURIComponent(slug)
+	const article = await getArticleBySlug(decodedSlug)
 
 	if (!article) {
 		notFound()
