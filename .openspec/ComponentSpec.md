@@ -40,6 +40,7 @@
     - `Excerpt` (Line clamped to 4 lines)
     - `Meta` (Date, Tags)
     - `ReadMoreButton` (Link)
+    - **Implementation**: Uses ShadCN `Card`, `Badge`, `Avatar`.
 
 ### `SearchDialog` (`src/components/search-dialog.tsx`)
 - **Description**: 搜尋文章的彈出視窗。
@@ -68,9 +69,9 @@
 
 ### `HomePage` (`/`)
 - **Layout**:
-    - **Latest Articles**: Top section, list of newest 3-5 articles.
-    - **Popular Articles**: Bottom section (if API supports view count) OR just "Featured".
-    - *Note*: HackMD API example does not clearly show "Popularity" metrics other than `viewCount` in `notes` array (`viewCount: 205`). We can use `viewCount` to sort for "Popular".
+    - **Latest Articles**: Top section, list of newest 6 articles (sorted by `publishedAt`).
+    - **Popular Articles**: Bottom section, list of top 4 articles (sorted by `viewCount`).
+    - *Note*: HackMD API provides `viewCount`, used for popularity sorting.
 
 ### `ArticleListPage` (`/articles`)
 - **Layout**: Simple list of `ArticleCard` components.

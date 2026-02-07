@@ -35,6 +35,7 @@ interface HackMDNote {
   publishedAt: string | null;
   shortId: string;
   userpath: string;
+  viewCount: number;
 }
 ```
 
@@ -76,10 +77,10 @@ interface Article {
   content: string;      // 完整 Markdown 內容 (需額外 fetch)
   tags: string[];       // 對應 HackMDNote.tags
   publishedAt: string;  // ISO Date String
-  author: {
     name: string;
     avatar: string;
   };
+  viewCount: number;
 }
 ```
 
