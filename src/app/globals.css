@@ -184,3 +184,26 @@
     @apply bg-red-950/30 text-red-100;
   }
 }
+
+/* HackMD Mark Styles */
+@layer components {
+  mark {
+    @apply text-black bg-yellow-300 p-1 rounded-sm;
+  }
+
+  .dark mark {
+    @apply text-yellow-500 bg-yellow-400/20;
+  }
+}
+
+
+/* HackMD Mark Styles */
+@layer components {
+  mark {
+    @apply text-black bg-yellow-300 p-1 rounded-sm;
+  }
+
+  .dark mark {
+    @apply text-yellow-500 bg-yellow-400/20;
+  }
+}

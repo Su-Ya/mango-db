@@ -27,6 +27,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/markdown-it": "^14.1.2",
+    "@types/markdown-it-anchor": "^4.0.4",
     "@types/markdown-it-container": "^4.0.0",
     "@types/node": "^20",
     "@types/react": "^19",

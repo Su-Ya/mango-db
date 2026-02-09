@@ -1,5 +1,8 @@
 import MarkdownIt from 'markdown-it'
 import Container from 'markdown-it-container'
+import anchor from 'markdown-it-anchor'
+// @ts-ignore
+import { markPlugin } from '@/lib/markdown-plugins'
 import { cn } from '@/lib/utils'
 
 interface MarkdownRendererProps {
@@ -14,6 +17,15 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
 		typographer: true,
 		breaks: true, // Fix: Enable line breaks
 	})
+
+	// Use plugins
+	md.use(markPlugin)
+	md.use(anchor, {
+		permalink: anchor.permalink.headerLink()
+	})
+
+	// Use custom mark plugin
+	md.use(markPlugin)
 
 	// HackMD Callout Plugin Configuration
 	const createContainer = (name: string, defaultTitle: string) => {
