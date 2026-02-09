@@ -40,8 +40,7 @@ export async function getAllArticles(): Promise<Article[]> {
 
 				const safeTitle = (frontmatter.title || note.title || 'untitled')
 					.toLowerCase()
-					.replace(/[^a-z0-9\u4e00-\u9fa5\s-]/g, '') // Keep Chinese chars if needed, or remove? Spec says "Remove non-alphanumeric". Let's stick to spec strictly first.
-					.replace(/[^a-z0-9-]/g, '') // Strict Spec: Remove non-alphanumeric (assuming English titles for now based on spec example)
+					.replace(/[^a-z0-9\u4e00-\u9fa5\s-]/g, '')
 					.replace(/\s+/g, '-');
 
 				slug = `${dateStr}-${safeTitle}`;
