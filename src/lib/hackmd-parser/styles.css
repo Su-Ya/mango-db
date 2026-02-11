@@ -1,0 +1,71 @@
+@reference "../../app/globals.css";
+
+/* HackMD Callout Styles */
+@layer components {
+	.callout {
+		@apply rounded-md border-l-4 p-4 my-4;
+	}
+
+	.callout-title {
+		@apply font-bold flex items-center gap-2 mb-2;
+	}
+
+	.callout-info {
+		@apply bg-blue-50 border-blue-500 text-blue-900;
+	}
+
+	.callout-info .callout-icon {
+		@apply text-blue-500;
+	}
+
+	.callout-success {
+		@apply bg-green-50 border-green-500 text-green-900;
+	}
+
+	.callout-success .callout-icon {
+		@apply text-green-500;
+	}
+
+	.callout-warning {
+		@apply bg-yellow-50 border-yellow-500 text-yellow-900;
+	}
+
+	.callout-warning .callout-icon {
+		@apply text-yellow-500;
+	}
+
+	.callout-danger {
+		@apply bg-red-50 border-red-500 text-red-900;
+	}
+
+	.callout-danger .callout-icon {
+		@apply text-red-500;
+	}
+
+	.dark .callout-info {
+		@apply bg-blue-950/30 text-blue-100;
+	}
+
+	.dark .callout-success {
+		@apply bg-green-950/30 text-green-100;
+	}
+
+	.dark .callout-warning {
+		@apply bg-yellow-950/30 text-yellow-100;
+	}
+
+	.dark .callout-danger {
+		@apply bg-red-950/30 text-red-100;
+	}
+}
+
+/* HackMD Mark Styles */
+@layer components {
+	mark {
+		@apply text-black bg-yellow-300 p-1 rounded-sm;
+	}
+
+	.dark mark {
+		@apply text-yellow-500 bg-yellow-400/20;
+	}
+}
