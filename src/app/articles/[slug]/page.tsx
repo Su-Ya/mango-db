@@ -1,5 +1,5 @@
 import { getAllArticles, getArticleBySlug } from "@/lib/data"
-import { MarkdownRenderer } from "@/components/markdown-renderer"
+import { MarkdownRenderer } from "@/lib/markdown-renderer"
 import { notFound } from "next/navigation"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
