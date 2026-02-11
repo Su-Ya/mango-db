@@ -1,8 +1,8 @@
 
-import { markPlugin } from './hackmd-highlight';
-import { calloutPlugin } from './hackmd-callout';
+import { HighlightPlugin } from './hackmd-highlight';
+import { CalloutPlugin } from './hackmd-callout';
 
-export const hackmdParser = {
-	highlight: markPlugin,
-	callout: calloutPlugin,
+export const HackmdParser = {
+	highlight: HighlightPlugin,
+	callout: CalloutPlugin,
 };

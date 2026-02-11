@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import MarkdownIt from 'markdown-it'
 import anchor from 'markdown-it-anchor'
-import { hackmdParser } from '@/lib/hackmd-parser'
+import { HackmdParser } from '@/lib/hackmd-parser'
 import { cn } from '@/lib/utils'
 
 interface MarkdownRendererProps {
@@ -18,8 +18,8 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
 	})
 
 	// Use plugins
-	md.use(hackmdParser.highlight);
-	md.use(hackmdParser.callout);
+	md.use(HackmdParser.highlight);
+	md.use(HackmdParser.callout);
 	md.use(anchor, {
 		permalink: anchor.permalink.headerLink()
 	})

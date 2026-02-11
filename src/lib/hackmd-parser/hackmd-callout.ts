@@ -2,7 +2,7 @@
 import Container from 'markdown-it-container';
 
 // Plugin for standard HackMD callouts (:::info, :::success, :::warning, :::danger, :::spoiler)
-export function calloutPlugin(md: any) {
+export function CalloutPlugin(md: any) {
 	const createContainer = (name: string, defaultTitle: string) => {
 		return [
 			Container,
