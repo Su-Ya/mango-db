@@ -29,6 +29,7 @@ import {
 	CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import { Badge } from "@/components/ui/badge"
+import { SearchDialog } from "@/components/search-dialog"
 
 interface SidebarNavProps extends React.ComponentProps<typeof Sidebar> {
 	articles?: Article[]
@@ -114,10 +115,15 @@ export function SidebarNav({ articles = [], ...props }: SidebarNavProps) {
 								</SidebarMenuButton>
 							</SidebarMenuItem>
 							<SidebarMenuItem>
-								<SidebarMenuButton onClick={() => alert("Search not implemented yet")} tooltip="Search">
-									<Search />
-									<span>Search</span>
-								</SidebarMenuButton>
+								<SearchDialog
+									articles={articles}
+									trigger={
+										<SidebarMenuButton tooltip="Search (Cmd+K)">
+											<Search />
+											<span>Search</span>
+										</SidebarMenuButton>
+									}
+								/>
 							</SidebarMenuItem>
 						</SidebarMenu>
 					</SidebarGroupContent>
