@@ -5,6 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Home, User, Search, FileText, ChevronRight } from "lucide-react"
 import { Article } from "@/lib/types"
+import { ModeToggle } from "@/components/mode-toggle"
 import {
 	Sidebar,
 	SidebarContent,
@@ -76,6 +77,7 @@ export function SidebarNav({ articles = [], ...props }: SidebarNavProps) {
 								<span className="truncate font-semibold">My Tech Blog</span>
 								<span className="truncate text-xs">Engineering Journey</span>
 							</div>
+							<ModeToggle />
 						</div>
 					</SidebarMenuItem>
 				</SidebarMenu>
@@ -173,7 +175,9 @@ export function SidebarNav({ articles = [], ...props }: SidebarNavProps) {
 			</SidebarContent>
 
 			<SidebarFooter>
-				{/* Optional Footer content */}
+				<div className="p-2 flex justify-center items-center">
+					<span className="text-xs text-muted-foreground">© 2026</span>
+				</div>
 			</SidebarFooter>
 			<SidebarRail />
 		</Sidebar>
