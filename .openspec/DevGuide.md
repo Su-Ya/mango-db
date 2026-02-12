@@ -35,7 +35,8 @@ git commit -m "feat(sidebar): add responsive mobile menu"
 若訊息內容較長，建議透過檔案進行提交，避免 Shell 換行問題：
 
 1. 建立訊息檔：寫入 `.git_commit_msg`
-2. 執行指令：`git commit -F .git_commit_msg && rm .git_commit_msg`
+2. 不可使用 `git add .`！因為會把 `.git_commit_msg` 也加入 commit
+3. 執行指令：`git commit -F .git_commit_msg && rm .git_commit_msg`
 
 > **指令詳解**：
 > - `git commit -F <file>`: `-F` 代表 File，讓 Git 直接讀取檔案內容作為提交訊息，適合處理多行文字或特殊符號。
@@ -85,7 +86,11 @@ git commit -m "feat(sidebar): add responsive mobile menu"
 │   │   └── use-mobile.tsx      # 偵測行動裝置狀態
 │   ├── lib/                    # 工具函式與資料獲取
 │   │   ├── data.ts             # 靜態文章資料與獲取邏輯
-│   │   └── markdown.ts         # Markdown 處理邏輯
+│   │   ├── markdown-renderer.tsx # Markdown 渲染元件
+│   │   └── hackmd-parser/      # HackMD 語法解析器
+│   │       ├── index.ts        # 統一匯出點
+│   │       ├── hackmd-highlight.ts
+│   │       └── hackmd-callout.ts
 └── ...config files (tailwind.config.ts, next.config.mjs, etc.)
 ```
 
@@ -93,3 +98,35 @@ git commit -m "feat(sidebar): add responsive mobile menu"
 - **Typography**: Inter (Google Fonts)
 - **Colors**: 遵循 `tailwind.config.ts` 中的 ShadCN UI 變數 (CSS Variables)。
 - **Dark Mode**: 支援系統切換，實作於 `next-themes`。
+
+## 6. Markdown Renderer 解析
+由於 HackMD 語法繁多且可能隨時新增，我們採用 **模組化 Parser** 策略，將 HackMD 語法拆分為獨立的解析函式。
+
+**結構**：
+│   ├── lib/                    # 工具函式與資料獲取
+│   │   ├── ...
+│   │   ├── markdown-renderer.tsx # Markdown 渲染元件
+│   │   └── hackmd-parser/      # HackMD 語法解析器
+│   │       ├── styles.css      # 所支援的語法樣式
+│   │       ├── index.ts        # 統一匯出點
+│   │       ├── ...
+│   │       ├── hackmd-highlight.ts
+│   │       └── hackmd-callout.ts
+- 規範：
+    - `styles.css` 統一寫入所支援的 HackMD 語法樣式
+      - 該樣式只限定在單篇文章頁面，故透過 `src/app/articles/[slug]/layout.tsx` 中的 `ArticleLayout` 匯入樣式
+      - 使用 Tailwind v4 的 `@reference` 來存取全域主題變量，避免重複
+    - `index.ts` 統一匯出 `HackmdParser` 物件供 `MarkdownRenderer` 使用
+    - 解析 HackMD 語法 (Plugins)
+      - highlight
+          - 語法開頭 `==`
+          - 語法結尾 `==`
+          - format to html=`<mark></mark>`
+      - callout section: info, success, warning, danger
+          - 語法開頭 `:::info`
+          - 語法結尾 `:::`
+          - format to html=`<div class='callout callout-info'></div>`
+      - callout section: sopiler
+          - 語法開頭 `:::sopiler callout_title`
+          - 語法結尾 `:::`
+          - format to collapse html=`<details><summary>{callout_title}</summary></details>`

@@ -26,8 +26,20 @@
             - [x] **Highlights** (使用 `markPlugin` 實作 ==highlight==)
             - [x] **Anchors** (使用 `markdown-it-anchor` 實作標題錨點)
             - [x] **Styling** (更新 `globals.css` 支援 callouts 與 mark 樣式)
-    - [/] 實作關於我頁面 (About Page)
-    - [ ] 實作搜尋功能 (Search Functionality)
+            - [x] 實作 `:::spoiler` 樣式與邏輯
+    - [x] 重構 HackMD Parser 架構 (Refactor HackMD Parser)
+        - [x] 建立 `src/lib/hackmd-parser/` 目錄
+        - [x] 實作 `hackmd-highlight.ts`
+        - [x] 實作 `hackmd-callout.ts`
+        - [x] 建立 `src/lib/hackmd-parser/index.ts` 統一匯出
+        - [x] 移動並更新 `MarkdownRenderer` (`src/lib/markdown-renderer.tsx`)
+        - [x] 重構 CSS 架構
+            - [x] 拆分 HackMD 樣式至 `src/lib/hackmd-parser/styles.css`
+            - [x] 使用 Tailwind v4 `@reference` 解決變數共用問題
+            - [x] 修復 `globals.css` Build Error (`border-border` utility issue)
+    - [x] 修改 openspec/DevGuide.md, DataSpec.md, Tasks.md，紀錄 重構 HackMD Parser 架構, HackMD 語法說明
+    - [/] 實作搜尋功能 (Search Functionality)
+    - [ ] 實作關於我頁面 (About Page)
 
 - [ ] 部署 (Deployment)
     - [ ] 驗證建置與匯出

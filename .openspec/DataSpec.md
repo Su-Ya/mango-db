@@ -122,34 +122,17 @@ export async function getArticleContent(noteId: string): Promise<string | null> 
 >     4. 將此 `slug` 用於生成靜態頁面 (`generateStaticParams`) 與路由匹配。
 
 ## 4. 內容處理策略 (Content Processing Strategy)
-此章節說明系統如何將 HackMD 的原始文字 (Raw Markdown)，轉換成網頁上漂亮的 HTML。我們採用 **Pipeline (管線)** 的概念，讓資料像工廠流水線一樣經過層層處理。
 
-- **核心引擎 (Engine)**: `markdown-it` (一個快速且可擴充的 Markdown 解析器)
+本專案採用 **Pipeline (管線)** 模式處理內容資料，將原始 HackMD Markdown 轉換為可渲染的 HTML。
 
-- **處理流程 (Pipeline)**:
-    1.  **預處理 (Preprocessing)**:
-        - **任務**: 在轉成 HTML 之前，先讀懂檔案的「基本資料」。
-        - **工具**: `gray-matter`
-        - **說明**: 負責解析文章開頭的 Frontmatter (YAML 格式的設定區塊)，例如標題、日期、標籤等。
-    
-    2.  **渲染轉換 (Rendering - Markdown to HTML)**:
-        - **任務**: 將 Markdown 符號轉成網頁標籤，並加上樣式。
-        - **擴充功能 (Plugins)**: 因為標準 Markdown 功能有限，我們需要外掛來支援特殊語法：
-            - **HackMD Callout (提示框)**: 
-                - *目的*: 讓 `:::info`, `:::danger` 等語法能顯示成有顏色的方塊。
-                - *實作*: 參考 `daily-oops/callout.js` 自製插件，將其轉為 `<div class="callout callout-info">...</div>`。
-            - **Syntax Highlighting (程式碼高亮)**:
-                - *目的*: 讓程式碼區塊有顏色區分 (如變數是藍色、字串是紅色)。
-                - *工具*: `prismjs` 或 `shiki`。
-            - **Anchors (標題錨點)**:
-                - *目的*: 讓每個 H2/H3 標題旁出現連結符號 (#)，方便跳轉。
-                - *工具*: `markdown-it-anchor`。
+### 處理流程 (Data Transformation Pipeline)
 
-    3.  **安全性清洗 (Sanitization)**:
-        - **任務**: 防止惡意程式碼注入 (XSS)。
-        - **說明**: 過濾掉不安全的 HTML 標籤（如 `<script>`），確保網頁安全。
-
-
+1.  **資料獲取 (Ingestion)**: 從 HackMD API 下載 Raw Markdown String。
+2.  **預處理 (Preprocessing)**: 解析 Frontmatter (YAML) 以提取 Metadata (Title, Date, Tags)。
+3.  **渲染轉換 (Rendering)**: 使用 `markdown-it` 將 Markdown 轉為 HTML。
+    - **整合解析 (Integration)**: 包含標準 Markdown 與 HackMD 特有語法 (Callouts, Spoiler, Highlight 等)。
+    - **詳細實作規範**: 請參閱 [DevGuide.md > Markdown Renderer 解析](./DevGuide.md#6-markdown-renderer-解析)。
+4.  **安全性清洗 (Sanitization)**: 過濾惡意程式瑪 (XSS) 確保安全性。
 
 ## 5. 搜尋策略 (Search Strategy)
 搜尋功能採 **Client-Side Filtering (前端篩選)** 方式實作，無需額外 API。
