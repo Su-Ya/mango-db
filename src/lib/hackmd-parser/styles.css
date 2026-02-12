@@ -69,3 +69,32 @@
 		@apply text-yellow-500 bg-yellow-400/20;
 	}
 }
+
+/* HackMD Spoiler Styles */
+@layer components {
+	details {
+		@apply mb-2 rounded px-4 py-2;
+		transition: all 0.1s;
+	}
+
+	details summary {
+		@apply cursor-pointer;
+	}
+
+	details summary+p {
+		@apply mt-2;
+	}
+
+	details p:last-child {
+		@apply mb-0;
+	}
+
+	.dark details {
+		background-color: #303036;
+		color: #d4d4d8;
+	}
+
+	.dark details summary::marker {
+		color: #d4d4d8;
+	}
+}
