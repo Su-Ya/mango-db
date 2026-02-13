@@ -118,9 +118,10 @@ export function SidebarNav({ articles = [], ...props }: SidebarNavProps) {
 								<SearchDialog
 									articles={articles}
 									trigger={
-										<SidebarMenuButton tooltip="Search (Cmd+K)">
+										<SidebarMenuButton tooltip="Search">
 											<Search />
 											<span>Search</span>
+											<span className="text-xs tracking-widest text-muted-foreground">⌘K</span>
 										</SidebarMenuButton>
 									}
 								/>

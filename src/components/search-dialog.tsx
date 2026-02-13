@@ -19,19 +19,15 @@ import { useSearchFilter } from "@/hooks/use-search-filter"
 interface SearchDialogProps {
 	articles: Article[]
 	trigger?: React.ReactNode
-	open?: boolean
-	onOpenChange?: (open: boolean) => void
 }
 
 export function SearchDialog({
 	articles,
 	trigger,
-	open: openProp,
-	onOpenChange: setOpenProp,
 }: SearchDialogProps) {
 	const router = useRouter()
 	const [open, setOpen] = React.useState(false)
-	const filter = useSearchFilter('strict')
+	const filter = useSearchFilter()
 
 	React.useEffect(() => {
 		const down = (e: KeyboardEvent) => {
@@ -45,35 +41,25 @@ export function SearchDialog({
 		return () => document.removeEventListener("keydown", down)
 	}, [])
 
-	const handleOpenChange = (value: boolean) => {
-		setOpen(value)
-		setOpenProp?.(value)
-	}
-
 	const handleSelect = React.useCallback(
 		(slug: string) => {
-			handleOpenChange(false)
+			setOpen(false)
 			router.push(`/articles/${slug}`)
 		},
 		[router]
 	)
 
-	// Use controlled state if prop is provided, otherwise local state
-	const isOpen = openProp ?? open
-
 	return (
 		<>
 			{trigger && (
-				<div onClick={() => handleOpenChange(true)}>{trigger}</div>
+				<div onClick={() => setOpen(true)}>{trigger}</div>
 			)}
 			<CommandDialog
-				open={isOpen}
-				onOpenChange={handleOpenChange}
-				commandProps={{
-					filter,
-				}}
+				open={open}
+				onOpenChange={setOpen}
+				filter={filter}
 			>
-				<CommandInput placeholder="Type a command or search..." />
+				<CommandInput placeholder="Fuzzy search article titles..." />
 				<CommandList>
 					<CommandEmpty>No results found.</CommandEmpty>
 					<CommandGroup heading="Articles">
