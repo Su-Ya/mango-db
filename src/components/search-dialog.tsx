@@ -13,9 +13,8 @@ import {
 	CommandList,
 } from "@/components/ui/command"
 import { Article } from "@/lib/types"
-
-import { useSearchFilter } from "@/hooks/use-search-filter"
-
+import { useDebounce } from "@/hooks/use-debounce"
+import { fuzzyMatch } from "@/lib/utils"
 interface SearchDialogProps {
 	articles: Article[]
 	trigger?: React.ReactNode
@@ -25,10 +24,17 @@ export function SearchDialog({
 	articles,
 	trigger,
 }: SearchDialogProps) {
-	const router = useRouter()
-	const [open, setOpen] = React.useState(false)
-	const filter = useSearchFilter()
+	const [displayQuery, setDisplayQuery] = React.useState("")
+	const [searchQuery, setSearchQuery] = React.useState("")
+	const isComposingRef = React.useRef(false)// 偵測注音輸入
+	const debouncedQuery = useDebounce(searchQuery, 300)
 
+	// Filter articles based on debounced query
+	const filteredArticles = React.useMemo(() => {
+		return articles.filter(article => fuzzyMatch(article.title, debouncedQuery))
+	}, [articles, debouncedQuery])
+
+	const [open, setOpen] = React.useState(false)
 	React.useEffect(() => {
 		const down = (e: KeyboardEvent) => {
 			if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
@@ -41,6 +47,7 @@ export function SearchDialog({
 		return () => document.removeEventListener("keydown", down)
 	}, [])
 
+	const router = useRouter()
 	const handleSelect = React.useCallback(
 		(slug: string) => {
 			setOpen(false)
@@ -57,13 +64,29 @@ export function SearchDialog({
 			<CommandDialog
 				open={open}
 				onOpenChange={setOpen}
-				filter={filter}
+				shouldFilter={false}
 			>
-				<CommandInput placeholder="Fuzzy search article titles..." />
+				<CommandInput
+					placeholder="Fuzzy search article titles..."
+					value={displayQuery}
+					onValueChange={(value) => {
+						setDisplayQuery(value)
+						if (!isComposingRef.current) {
+							setSearchQuery(value)
+						}
+					}}
+					onCompositionStart={() => {
+						isComposingRef.current = true
+					}}
+					onCompositionEnd={() => {
+						isComposingRef.current = false
+						setSearchQuery(displayQuery)
+					}}
+				/>
 				<CommandList>
 					<CommandEmpty>No results found.</CommandEmpty>
 					<CommandGroup heading="Articles">
-						{articles.map((article) => (
+						{filteredArticles.map((article) => (
 							<CommandItem
 								key={article.id}
 								value={article.title}
