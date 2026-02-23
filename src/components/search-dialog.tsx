@@ -89,8 +89,8 @@ export function SearchDialog({
 						{filteredArticles.map((article) => (
 							<CommandItem
 								key={article.id}
-								value={article.title}
-								onSelect={() => handleSelect(article.slug)}
+								value={article.slug}
+								onSelect={handleSelect}
 							>
 								<Search className="mr-2 h-4 w-4" />
 								<span>{article.title}</span>
