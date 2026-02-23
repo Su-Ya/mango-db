@@ -38,8 +38,16 @@
             - [x] 使用 Tailwind v4 `@reference` 解決變數共用問題
             - [x] 修復 `globals.css` Build Error (`border-border` utility issue)
     - [x] 修改 openspec/DevGuide.md, DataSpec.md, Tasks.md，紀錄 重構 HackMD Parser 架構, HackMD 語法說明
-    - [/] 實作搜尋功能 (Search Functionality)
-    - [ ] 實作關於我頁面 (About Page)
+    - [x] 實作關於我頁面 (About Page)
+    - [x] 實作搜尋功能 (Search Functionality)
+        - [x] 安裝 `cmdk` 元件
+        - [x] 實作 `SearchDialog`
+            - [x] 手動過濾 (Manual Filtering)
+            - [x] 模糊搜尋 (`fuzzyMatch`)
+            - [x] 輸入防抖動 (Debounce)
+            - [x] 注音輸入法 IME 優化，避免選字期間觸發過濾
+            - [x] React 效能優化 (useCallback, useRef, useMemo)
+        - [x] 整合至 `SidebarNav`
 
 - [ ] 部署 (Deployment)
     - [ ] 驗證建置與匯出
