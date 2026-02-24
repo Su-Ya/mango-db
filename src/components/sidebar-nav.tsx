@@ -158,6 +158,7 @@ export function SidebarNav({ articles = [], ...props }: SidebarNavProps) {
 														<SidebarMenuSubItem>
 															<CollapsibleTrigger asChild>
 																<SidebarMenuSubButton>
+																	<ChevronRight className="mr-1 h-3 w-3 shrink-0 transition-transform group-data-[state=open]/month-collapsible:rotate-90" />
 																	<span className="flex-1">{monthGroup.month}</span>
 																	<Badge variant="secondary" className="text-[10px] h-4 px-1">{monthGroup.articles.length}</Badge>
 																</SidebarMenuSubButton>
