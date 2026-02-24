@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Home, User, Search, FileText, ChevronRight } from "lucide-react"
 import { Article } from "@/lib/types"
@@ -71,11 +72,17 @@ export function SidebarNav({ articles = [], ...props }: SidebarNavProps) {
 				<SidebarMenu>
 					<SidebarMenuItem>
 						<div className="flex items-center gap-2 px-2 py-4">
-							<div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-								<FileText className="size-4" />
+							<div className="flex aspect-square size-8 items-center justify-center rounded-full bg-sidebar-primary text-sidebar-primary-foreground overflow-hidden border-1 border-orange-500">
+								<Image
+									src="/sign_logo.png"
+									alt="Logo"
+									width={32}
+									height={32}
+									className="object-cover"
+								/>
 							</div>
 							<div className="grid flex-1 text-left text-sm leading-tight">
-								<span className="truncate font-semibold">My Tech Blog</span>
+								<span className="truncate font-semibold">mango's DB</span>
 								<span className="truncate text-xs">Engineering Journey</span>
 							</div>
 							<ModeToggle />

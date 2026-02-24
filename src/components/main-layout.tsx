@@ -2,6 +2,7 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/s
 import { SidebarNav } from "@/components/sidebar-nav"
 import { getAllArticles } from "@/lib/data"
 import { Separator } from "@/components/ui/separator"
+import Image from "next/image"
 
 export async function MainLayout({ children }: { children: React.ReactNode }) {
 	// Data fetching on the server
@@ -18,10 +19,16 @@ export async function MainLayout({ children }: { children: React.ReactNode }) {
 				<header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
 					<SidebarTrigger className="-ml-1" />
 					<Separator orientation="vertical" className="mr-2 h-4" />
-					<div className="text-sm font-medium text-muted-foreground">
-						{/* We can add Breadcrumbs here later */}
-						Tech Blog
+					<div className="flex aspect-square size-8 items-center justify-center rounded-full bg-sidebar-primary text-sidebar-primary-foreground overflow-hidden border-1 border-orange-500">
+						<Image
+							src="/sign_logo.png"
+							alt="Logo"
+							width={32}
+							height={32}
+							className="object-cover"
+						/>
 					</div>
+					<span className="text-sm font-semibold">mango's DB</span>
 				</header>
 
 				{/* Page Content */}
