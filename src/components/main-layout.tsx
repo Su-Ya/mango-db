@@ -15,8 +15,8 @@ export async function MainLayout({ children }: { children: React.ReactNode }) {
 
 			{/* Main Content Area */}
 			<SidebarInset>
-				{/* Mobile/Desktop Header Trigger */}
-				<header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+				{/* Mobile Header Trigger */}
+				<header className="flex md:hidden h-16 shrink-0 items-center gap-2 border-b px-4 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
 					<SidebarTrigger className="-ml-1" />
 					<Separator orientation="vertical" className="mr-2 h-4" />
 					<div className="flex aspect-square size-8 items-center justify-center rounded-full bg-sidebar-primary text-sidebar-primary-foreground overflow-hidden border-1 border-orange-500">
@@ -32,7 +32,7 @@ export async function MainLayout({ children }: { children: React.ReactNode }) {
 				</header>
 
 				{/* Page Content */}
-				<div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+				<div className="flex flex-1 flex-col gap-4 p-4">
 					{children}
 				</div>
 			</SidebarInset>
