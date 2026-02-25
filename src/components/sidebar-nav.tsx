@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation"
 import { Home, User, Search, FileText, ChevronRight } from "lucide-react"
 import { Article } from "@/lib/types"
 import { ModeToggle } from "@/components/mode-toggle"
+import signLogo from "../../public/sign_logo.png"
 import {
 	Sidebar,
 	SidebarContent,
@@ -72,7 +73,7 @@ export function SidebarNav({ articles = [], ...props }: SidebarNavProps) {
 						<div className="flex items-center gap-2 px-2 py-4">
 							<div className="flex aspect-square size-8 items-center justify-center rounded-full bg-sidebar-primary text-sidebar-primary-foreground overflow-hidden border-1 border-orange-500">
 								<Image
-									src="/sign_logo.png"
+									src={signLogo}
 									alt="Logo"
 									width={32}
 									height={32}

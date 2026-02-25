@@ -3,6 +3,7 @@ import { SidebarNav } from "@/components/sidebar-nav"
 import { getAllArticles } from "@/lib/data"
 import { Separator } from "@/components/ui/separator"
 import Image from "next/image"
+import signLogo from "../../public/sign_logo.png"
 
 export async function MainLayout({ children }: { children: React.ReactNode }) {
 	// Data fetching on the server
@@ -21,7 +22,7 @@ export async function MainLayout({ children }: { children: React.ReactNode }) {
 					<Separator orientation="vertical" className="mr-2 h-4" />
 					<div className="flex aspect-square size-8 items-center justify-center rounded-full bg-sidebar-primary text-sidebar-primary-foreground overflow-hidden border-1 border-orange-500">
 						<Image
-							src="/sign_logo.png"
+							src={signLogo}
 							alt="Logo"
 							width={32}
 							height={32}

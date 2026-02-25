@@ -2,6 +2,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Mail } from 'lucide-react';
+// Next.js 會自動在編譯時加上 gihub repo name /mango-db/ 前綴
+import signLogo from "../../../public/sign_logo.png"
 
 export const metadata = {
 	title: 'About Me | mango\'s DB',
@@ -16,7 +18,7 @@ export default function AboutPage() {
 				<CardHeader>
 					<div className="flex flex-col md:flex-row items-center gap-6">
 						<Avatar className="h-32 w-32 border-2 border-orange-500">
-							<AvatarImage src="/sign_logo.png" alt="mango logo" />
+							<AvatarImage src={signLogo.src} alt="mango logo" />
 							<AvatarFallback>mango logo</AvatarFallback>
 						</Avatar>
 						<div>
