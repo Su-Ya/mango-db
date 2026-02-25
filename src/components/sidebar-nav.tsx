@@ -71,19 +71,21 @@ export function SidebarNav({ articles = [], ...props }: SidebarNavProps) {
 				<SidebarMenu>
 					<SidebarMenuItem>
 						<div className="flex items-center gap-2 px-2 py-4">
-							<div className="flex aspect-square size-8 items-center justify-center rounded-full bg-sidebar-primary text-sidebar-primary-foreground overflow-hidden border-1 border-orange-500">
-								<Image
-									src={signLogo}
-									alt="Logo"
-									width={32}
-									height={32}
-									className="object-cover"
-								/>
-							</div>
-							<div className="grid flex-1 text-left text-sm leading-tight">
-								<span className="truncate font-semibold">mango's DB</span>
-								<span className="truncate text-xs">Configuring Daily 💻🧠💪</span>
-							</div>
+							<Link href="/" className="flex flex-1 items-center gap-2 group outline-none overflow-hidden">
+								<div className="flex aspect-square size-8 items-center justify-center rounded-full bg-sidebar-primary text-sidebar-primary-foreground overflow-hidden border-1 border-orange-500">
+									<Image
+										src={signLogo}
+										alt="Logo"
+										width={32}
+										height={32}
+										className="object-cover"
+									/>
+								</div>
+								<div className="grid flex-1 text-left text-sm leading-tight">
+									<span className="truncate font-semibold">mango's DB</span>
+									<span className="truncate text-xs">Configuring Daily 💻🧠💪</span>
+								</div>
+							</Link>
 							<ModeToggle />
 						</div>
 					</SidebarMenuItem>
