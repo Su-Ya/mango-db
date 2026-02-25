@@ -14,7 +14,7 @@ interface PageProps {
 export async function generateStaticParams() {
 	const articles = await getAllArticles()
 	return articles.map((article) => ({
-		slug: article.slug,
+		slug: encodeURIComponent(article.slug),
 	}))
 }
 
