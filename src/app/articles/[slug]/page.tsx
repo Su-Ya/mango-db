@@ -13,9 +13,14 @@ interface PageProps {
 
 export async function generateStaticParams() {
 	const articles = await getAllArticles()
-	return articles.map((article) => ({
-		slug: encodeURIComponent(article.slug),
-	}))
+	return articles.map((article) => {
+		// 本地開發 (npm run dev) 有比對 Bug (non-ASCII URL matching)，需給經過編碼的網址
+		if (process.env.NODE_ENV === "development") {
+			return { slug: encodeURIComponent(article.slug) }
+		}
+		// 正式打包 (npm run build)，需給中文原字串，讓 GitHub Pages 能找對應資料夾
+		return { slug: article.slug }
+	})
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
