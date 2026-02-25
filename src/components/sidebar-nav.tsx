@@ -22,14 +22,12 @@ import {
 	SidebarMenuSubButton,
 	SidebarMenuSubItem,
 	SidebarRail,
-	SidebarTrigger,
 } from "@/components/ui/sidebar"
 import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from "@/components/ui/collapsible"
-import { Badge } from "@/components/ui/badge"
 import { SearchDialog } from "@/components/search-dialog"
 
 interface SidebarNavProps extends React.ComponentProps<typeof Sidebar> {
@@ -83,7 +81,7 @@ export function SidebarNav({ articles = [], ...props }: SidebarNavProps) {
 							</div>
 							<div className="grid flex-1 text-left text-sm leading-tight">
 								<span className="truncate font-semibold">mango's DB</span>
-								<span className="truncate text-xs">Engineering Journey</span>
+								<span className="truncate text-xs">Configuring Daily 💻🧠💪</span>
 							</div>
 							<ModeToggle />
 						</div>
@@ -106,18 +104,18 @@ export function SidebarNav({ articles = [], ...props }: SidebarNavProps) {
 								</SidebarMenuButton>
 							</SidebarMenuItem>
 							<SidebarMenuItem>
-								<SidebarMenuButton asChild isActive={pathname === "/articles"}>
-									<Link href="/articles">
-										<FileText />
-										<span>All Articles</span>
-									</Link>
-								</SidebarMenuButton>
-							</SidebarMenuItem>
-							<SidebarMenuItem>
 								<SidebarMenuButton asChild isActive={pathname === "/about"}>
 									<Link href="/about">
 										<User />
 										<span>About Me</span>
+									</Link>
+								</SidebarMenuButton>
+							</SidebarMenuItem>
+							<SidebarMenuItem>
+								<SidebarMenuButton asChild isActive={pathname === "/articles"}>
+									<Link href="/articles">
+										<FileText />
+										<span>All Articles</span>
 									</Link>
 								</SidebarMenuButton>
 							</SidebarMenuItem>
@@ -159,8 +157,7 @@ export function SidebarNav({ articles = [], ...props }: SidebarNavProps) {
 															<CollapsibleTrigger asChild>
 																<SidebarMenuSubButton>
 																	<ChevronRight className="mr-1 h-3 w-3 shrink-0 transition-transform group-data-[state=open]/month-collapsible:rotate-90" />
-																	<span className="flex-1">{monthGroup.month}</span>
-																	<Badge variant="secondary" className="text-[10px] h-4 px-1">{monthGroup.articles.length}</Badge>
+																	<span className="flex-1">{monthGroup.month} ({monthGroup.articles.length})</span>
 																</SidebarMenuSubButton>
 															</CollapsibleTrigger>
 															<CollapsibleContent>

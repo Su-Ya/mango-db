@@ -28,7 +28,10 @@ export async function MainLayout({ children }: { children: React.ReactNode }) {
 							className="object-cover"
 						/>
 					</div>
-					<span className="text-sm font-semibold">mango's DB</span>
+					<div className="grid flex-1 text-left text-sm leading-tight">
+						<span className="truncate font-semibold">mango's DB</span>
+						<span className="truncate text-xs">Configuring Daily 💻🧠💪</span>
+					</div>
 				</header>
 
 				{/* Page Content */}
