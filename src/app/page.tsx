@@ -25,7 +25,7 @@ export default async function HomePage() {
 
       {/* Hero / Latest Section */}
       <section className="space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center">
           <div className="flex items-center gap-2">
             <Clock className="h-5 w-5 text-primary" />
             <h2 className="text-2xl font-bold tracking-tight">Latest Articles</h2>

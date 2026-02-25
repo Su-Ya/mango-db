@@ -1,7 +1,6 @@
 import { getAllArticles, getArticleBySlug } from "@/lib/data"
 import { MarkdownRenderer } from "@/lib/markdown-renderer"
 import { notFound } from "next/navigation"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, Eye } from "lucide-react"
 import { Metadata } from "next"
@@ -48,16 +47,10 @@ export default async function ArticleDetailPage({ params }: PageProps) {
 			{/* Article Header */}
 			<header className="mb-10 space-y-6 text-center border-b pb-10">
 				<div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-					<Badge variant="outline" className="rounded-full"> Article </Badge>
-					<span>•</span>
 					<div className="flex items-center gap-1">
 						<Calendar className="h-3 w-3" />
 						<time dateTime={article.publishedAt}>
-							{new Date(article.publishedAt).toLocaleDateString(undefined, {
-								year: 'numeric',
-								month: 'long',
-								day: 'numeric'
-							})}
+							{new Date(article.publishedAt).toLocaleDateString()}
 						</time>
 					</div>
 					{article.viewCount > 0 && (
@@ -77,14 +70,9 @@ export default async function ArticleDetailPage({ params }: PageProps) {
 
 				<div className="flex items-center justify-center gap-4">
 					<div className="flex items-center gap-2">
-						<Avatar className="h-10 w-10 border">
-							<AvatarImage src={article.author.avatar} />
-							<AvatarFallback>{article.author.name[0]}</AvatarFallback>
-						</Avatar>
-						<div className="text-left">
-							<p className="text-sm font-medium">{article.author.name}</p>
-							<p className="text-xs text-muted-foreground">Author</p>
-						</div>
+						{article.tags.map(tag => (
+							<Badge key={tag} variant="secondary">{tag}</Badge>
+						))}
 					</div>
 				</div>
 			</header>
@@ -94,13 +82,8 @@ export default async function ArticleDetailPage({ params }: PageProps) {
 				<MarkdownRenderer content={article.content} />
 			</main>
 
-			{/* Article Footer / Tags */}
+			{/* Article Footer */}
 			<footer className="mt-16 pt-8 border-t">
-				<div className="flex flex-wrap gap-2">
-					{article.tags.map(tag => (
-						<Badge key={tag} variant="secondary">#{tag}</Badge>
-					))}
-				</div>
 			</footer>
 		</div>
 	)
