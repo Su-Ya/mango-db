@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Mail } from 'lucide-react';
 // Next.js 會自動在編譯時加上 gihub repo name /mango-db/ 前綴
-import signLogo from "../../../public/sign_logo.png"
+import signLogo from "@/public/sign_logo.png"
 
 export const metadata = {
 	title: 'About Me | mango\'s DB',

@@ -3,7 +3,7 @@ import { SidebarNav } from "@/components/sidebar-nav"
 import { getAllArticles } from "@/lib/data"
 import { Separator } from "@/components/ui/separator"
 import Image from "next/image"
-import signLogo from "../../public/sign_logo.png"
+import signLogo from "@/public/sign_logo.png"
 import Link from "next/link"
 
 export async function MainLayout({ children }: { children: React.ReactNode }) {

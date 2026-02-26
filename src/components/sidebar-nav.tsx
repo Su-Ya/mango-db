@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation"
 import { Home, User, Search, FileText, ChevronRight } from "lucide-react"
 import { Article } from "@/lib/types"
 import { ModeToggle } from "@/components/mode-toggle"
-import signLogo from "../../public/sign_logo.png"
+import signLogo from "@/public/sign_logo.png"
 import {
 	Sidebar,
 	SidebarContent,
