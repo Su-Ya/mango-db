@@ -1,6 +1,6 @@
 # 任務列表
 
-- [/] 專案建置 (Project Setup)
+- [x] 專案建置 (Project Setup)
     - [x] 初始化 Next.js 專案
     - [x] 設定 Tailwind CSS 和 ShadCN UI
     - [x] 建立初始目錄結構
@@ -9,8 +9,12 @@
     - [x] 建立 OpenSpec 結構 (.openspec/Spec.md)
     - [x] 定義資料結構與 API 規格
     - [x] 設計 UI 元件規格
+    - [x] 修改 `openspec/DevGuide.md`, `DataSpec.md`, `Tasks.md`，紀錄重構 HackMD Parser 架構, HackMD 語法說明
+    - [x] 文件拆分與重構 (Documentation Refactoring)
+        - [x] 從 `DevGuide.md` 中獨立出 `DevLog.md` 存放深入的架構決策 (Search Implementation, Rendering Strategy)
+        - [x] 根據實際程式碼重寫並同步 `ComponentSpec.md` 中的頁面與元件規格
 
-- [ ] 核心功能實作 (Core Implementation - Specs Ready)
+- [x] 核心功能實作 (Core Implementation - Specs Ready)
     - [x] 實作 HackMD 資料獲取 (API/Mock)
     - [x] 開發主版面配置 (Main Layout) 和側邊欄 (Sidebar)
     - [x] 實作首頁 (Home Page)
@@ -37,7 +41,6 @@
             - [x] 拆分 HackMD 樣式至 `src/lib/hackmd-parser/styles.css`
             - [x] 使用 Tailwind v4 `@reference` 解決變數共用問題
             - [x] 修復 `globals.css` Build Error (`border-border` utility issue)
-    - [x] 修改 openspec/DevGuide.md, DataSpec.md, Tasks.md，紀錄 重構 HackMD Parser 架構, HackMD 語法說明
     - [x] 實作關於我頁面 (About Page)
     - [x] 實作搜尋功能 (Search Functionality)
         - [x] 安裝 `cmdk` 元件
@@ -49,6 +52,14 @@
             - [x] React 效能優化 (useCallback, useRef, useMemo)
         - [x] 整合至 `SidebarNav`
 
-- [ ] 部署 (Deployment)
-    - [ ] 驗證建置與匯出
-    - [ ] 部署至 GitHub Pages
+- [x] 部署 (Deployment)
+    - [x] Next.js 靜態匯出 (`Static Export`) 架構調整
+        - [x] 將分頁邏輯從 `page.tsx` (Server) 拆分到 `article-list-client.tsx` (Client) 以符合 `output: "export"` 限制
+    - [x] GitHub Pages 環境路徑修正
+        - [x] 將 public 圖片手動路徑字串修改為 `import` 語法，讓 webpack 自動處理 `basePath`
+        - [x] 修改 `tsconfig.json` 新增 `@/public/*` 捷徑
+    - [x] 靜態路由修正 (Static Routes Fix)
+        - [x] `next.config.ts` 啟用 `trailingSlash: true` 解決重新整理與 Link prefetch `404 Not Found` 問題
+        - [x] `generateStaticParams` 針對 `NODE_ENV` 動態輸出 `encodeURIComponent`，解決本機與 GitHub Server 中文檔名比對差異
+    - [x] 建立 GitHub Actions 部署腳本 (`.github/workflows/deploy.yml`)
+    - [x] 部署至 GitHub Pages
