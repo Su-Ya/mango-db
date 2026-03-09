@@ -6,7 +6,7 @@ import { Mail } from 'lucide-react';
 import signLogo from "@/public/sign_logo.png"
 
 export const metadata = {
-	title: 'About Me | mango\'s DB',
+	title: 'About Me | mangoDB',
 	description: 'Frontend Engineer & Blogger',
 };
 

@@ -32,7 +32,7 @@ export async function MainLayout({ children }: { children: React.ReactNode }) {
 							/>
 						</div>
 						<div className="grid flex-1 text-left text-sm leading-tight">
-							<span className="truncate font-semibold">mango's DB</span>
+							<span className="truncate font-semibold">mangoDB</span>
 							<span className="truncate text-xs">Configuring Daily 💻🧠💪</span>
 						</div>
 					</Link>

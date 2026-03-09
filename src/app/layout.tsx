@@ -7,8 +7,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "mango's DB",
-  description: "mango's DB 這個 Blog 內容聚焦在技術研究、開發踩雷等工程師日常💻，以及腦袋思維🧠、強身健體💪等個人成長分享。",
+  title: "mangoDB",
+  description: "mangoDB 這個 Blog 內容聚焦在技術研究、開發踩雷等工程師日常💻，以及腦袋思維🧠、強身健體💪等個人成長分享。",
 };
 
 export default function RootLayout({
