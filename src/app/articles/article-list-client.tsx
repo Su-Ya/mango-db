@@ -48,14 +48,13 @@ export function ArticleListClient({ articles }: { articles: Omit<Article, 'conte
 	return (
 		<div className="flex flex-col gap-8 pb-10">
 			<div className="space-y-2">
-				<h1 className="text-3xl font-bold tracking-tight">All Articles</h1>
+				<h1 className="text-3xl font-bold tracking-tight">All Reads</h1>
 				<p className="text-muted-foreground">
-					Showing {currentArticles.length > 0 ? startIndex + 1 : 0} to{" "}
-					{Math.min(endIndex, totalItems)} of {totalItems} articles
+					{currentArticles.length > 0 ? startIndex + 1 : 0}-{Math.min(endIndex, totalItems)} of {totalItems} reads
 				</p>
 			</div>
 
-			<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+			<div className="grid gap-6 lg:grid-cols-2 2xl:grid-cols-3">
 				{currentArticles.map((article) => (
 					<ArticleCard key={article.id} article={article as Article} />
 				))}

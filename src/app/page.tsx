@@ -28,16 +28,16 @@ export default async function HomePage() {
         <div className="flex items-center">
           <div className="flex items-center gap-2">
             <Clock className="h-5 w-5 text-primary" />
-            <h2 className="text-2xl font-bold tracking-tight">Latest Articles</h2>
+            <h2 className="text-2xl font-bold tracking-tight">Latest</h2>
           </div>
           <Button variant="ghost" className="gap-1" asChild>
             <Link href="/articles">
-              View All <ArrowRight className="h-4 w-4" />
+              All <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 lg:grid-cols-2 2xl:grid-cols-3">
           {latestArticles.map((article) => (
             <ArticleCard key={article.id} article={article} />
           ))}
@@ -48,10 +48,10 @@ export default async function HomePage() {
       <section className="space-y-6">
         <div className="flex items-center gap-2">
           <Flame className="h-5 w-5 text-orange-500" />
-          <h2 className="text-2xl font-bold tracking-tight">Popular Reads</h2>
+          <h2 className="text-2xl font-bold tracking-tight">Popular</h2>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 lg:grid-cols-2 2xl:grid-cols-3">
           {popularArticles.map((article) => (
             <ArticleCard key={article.id} article={article} className="bg-muted/30" />
           ))}

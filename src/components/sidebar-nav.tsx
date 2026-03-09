@@ -118,7 +118,7 @@ export function SidebarNav({ articles = [], ...props }: SidebarNavProps) {
 								<SidebarMenuButton asChild isActive={pathname === "/articles"}>
 									<Link href="/articles">
 										<FileText />
-										<span>All Articles</span>
+										<span>All Reads</span>
 									</Link>
 								</SidebarMenuButton>
 							</SidebarMenuItem>
