@@ -5,11 +5,6 @@ import { Mail } from 'lucide-react';
 // Next.js 會自動在編譯時加上 gihub repo name /mango-db/ 前綴
 import signLogo from "@/public/sign_logo.png"
 
-export const metadata = {
-	title: 'About Me | mangoDB',
-	description: 'Frontend Engineer & Blogger',
-};
-
 export default function AboutPage() {
 	return (
 		<div className="p-4 sm:p-6 md:p-8">
@@ -46,7 +41,7 @@ export default function AboutPage() {
 				<CardContent>
 					<div className="prose dark:prose-invert max-w-none text-foreground space-y-4">
 						<p>Hi 大家好～我是 mango 芒果。<br />
-							這個 Blog 用來儲存我思考後的產物，內容聚焦在兩個主題：
+							這個 Blog 內容聚焦在兩個主題：
 						</p>
 						<ul className="mt-0">
 							<li>工程師 ( 技術研究、開發踩雷等 ) 💻</li>
