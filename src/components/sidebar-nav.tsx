@@ -129,7 +129,13 @@ export function SidebarNav({ articles = [], ...props }: SidebarNavProps) {
 										<SidebarMenuButton tooltip="Search">
 											<Search />
 											<span>Search</span>
-											<span className="text-xs tracking-widest text-muted-foreground">⌘K</span>
+											<div>
+												<kbd className="mr-1 inline-flex h-5 items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">⌘</kbd>
+												<kbd className="inline-flex h-5 items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">K</kbd>
+												<span className="mx-1.5 text-[10px]">or</span>
+												<kbd className="mr-1 inline-flex h-5 items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">Ctrl</kbd>
+												<kbd className="inline-flex h-5 items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">K</kbd>
+											</div>
 										</SidebarMenuButton>
 									}
 								/>
