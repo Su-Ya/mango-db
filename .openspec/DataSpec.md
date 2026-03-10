@@ -132,7 +132,6 @@ export async function getArticleContent(noteId: string): Promise<string | null> 
 3.  **渲染轉換 (Rendering)**: 使用 `markdown-it` 將 Markdown 轉為 HTML。
     - **整合解析 (Integration)**: 包含標準 Markdown 與 HackMD 特有語法 (Callouts, Spoiler, Highlight 等)。
     - **詳細實作規範**: 請參閱 [DevGuide.md > Markdown Renderer 解析](./DevGuide.md#6-markdown-renderer-解析)。
-4.  **安全性清洗 (Sanitization)**: 過濾惡意程式瑪 (XSS) 確保安全性。
 
 ## 5. 搜尋策略 (Search Strategy)
 搜尋功能採 **Client-Side Filtering (前端篩選)** 方式實作，無需額外 API。
