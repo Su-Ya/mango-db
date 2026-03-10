@@ -62,11 +62,11 @@ git commit -m "feat(sidebar): add responsive mobile menu"
 │   └── workflows/              # GitHub Actions 工作流程
 │       └── deploy.yml          # GitHub Page 部署設定
 ├── .openspec/                  # 專案規格文件
-│   ├── Spec.md                 # 產品總論與需求大綱
-│   ├── DataSpec.md             # 資料結構與 API 規格
-│   ├── ComponentSpec.md        # UI 元件與頁面規格
-│   ├── DevGuide.md             # 開發規範與環境指南
-│   ├── DevLog.md               # 開發日誌與架構決策
+│   ├── Spec.md                 # 原始文件
+│   ├── DataSpec.md             # 文章資料結構與 HackMD API
+│   ├── ComponentSpec.md        # UI 元件與 Page 頁面規格
+│   ├── DevGuide.md             # 開發部署 Workflow 與環境指南
+│   ├── DevLog.md               # 開發日誌與決策備忘錄
 │   └── Tasks.md                # 專案任務與進度追蹤
 ├── public/                     # 靜態資源資料夾 (如: 圖片)
 │   └── sign_logo.png           # sidebar, Mobile Header, About me 的 Logo
