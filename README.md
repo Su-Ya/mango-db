@@ -8,40 +8,40 @@ Blog 技術組合是 Next.js + HackMD，
 **開發流程**
 ```mermaid
 flowchart TD
-    A[人類定義原始文件 Spec.md] -->| AI 讀 Spec.md | B(AI 生成細項文件<br/>.openspec/DevGuide,<br/>DataSpec,<br/> ComponentSpec,<br/> Tasks,<br/> DevLog)
-    B --> C{人類逐一審核<br/>文件是否完善？}
-    C -->|ok| D(AI 依文件做 git commit)
-    C -->|不 ok| E[人類列出改善項目、想法、明確修改文字]
-    E --> | AI 讀取 | F(AI 修改文件)
-    F --> C
+    A[人類定義 Spec.md] -.-> DocsPhase
+
+    subgraph DocsPhase ["階段一：定義規格文件"]
+        direction TB
+        B(AI 生成/修改<br/>規格細項文件) --> C{人類審核文件<br/>是否完善？}
+        C -->|不 OK 給回饋| B
+        C -->|OK| D(AI 產生 Git Commit)
+        D --> E{人類審核<br/>Commit 訊息}
+        E -->|不 OK 給回饋| D
+    end
+
+    E -.->|OK 進入開發| CodePhase
+
+    subgraph CodePhase ["階段二：開發"]
+        direction TB
+        L(AI 依文件實作程式碼) --> M{人類測試除錯<br/>運作是否正常？}
+        M -->|不 OK 給回饋| L
+        M -->|OK| N{人類審核是否需<br/>重構 / 優化程式碼？}
+        N -->|是，給回饋| Refactor[AI 依回饋進行重構]
+        Refactor --> M
+        N -->|否| O(AI 產生 Git Commit)
+        O --> P{人類審核<br/>Commit 訊息}
+        P -->|不 OK 給回饋| O
+    end
     
-    D --> G{人類審核 commit message 跟 commit 檔案<br/>是否無誤？}
-    G -->|ok| H(AI 完成文件 commit)
-    G -->|不 ok| I[人類列出改善項目、想法、明確文字]
-    I --> | AI 讀取 | J(AI 修改 commit)
-    J --> G
-    
-    H --> L(AI 依文件實作專案程式碼)
-    L --> M{人類審核與除錯<br/>程式是否運作正確？}
-    M -->|ok| N(AI 依文件做 git commit)
-    M -->|不 ok| O[人類列出改善項目、想法、明確文字]
-    O --> | AI 讀取 | P(AI 修改程式碼)
-    P --> M
-    
-    N --> Q{人類審核 commit message 跟 commit 檔案<br/>是否無誤？}
-    Q -->|ok| R(AI 完成程式 commit)
-    Q -->|不 ok| S[人類列出改善項目、想法、明確文字]
-    S --> | AI 讀取 | T(AI 修改 commit)
-    T --> Q
-    R --> U([完成開發])
-    
+    P -->|OK| Q([完成開發])
+
     classDef human fill:#dbeafe,stroke:#3b82f6,stroke-width:2px
     classDef ai fill:#d1fae5,stroke:#10b981,stroke-width:2px
     classDef verify fill:#fee2e2,stroke:#ef4444,stroke-width:2px
 
-    class A,E,I,O,S human
-    class B,D,F,H,J,L,N,P,R,T ai
-    class C,G,M,Q verify
+    class A,I human
+    class B,D,F,H,J,L,O,Refactor ai
+    class C,E,G,M,N,P verify
 ```
 
 1. 定義產品規格 (Spec)：由人在 `.openspec/Spec.md` 中列出網站的核心需求、功能規劃與預期技術組合。
