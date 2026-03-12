@@ -44,9 +44,9 @@ flowchart TD
     class C,E,G,M,N,P verify
 ```
 
-1. 定義產品規格 (Spec)：由人在 `.openspec/Spec.md` 中列出網站的核心需求、功能規劃與預期技術組合。
+1. 定義原始文件 (Spec)：由人在 `.openspec/Spec.md` 中列出網站的核心需求、功能規劃與預期技術組合。
 
-2. 展開技術文件 (Docs)：AI 基於 Spec.md，進一步生成詳細文件 `.openspec/DevGuide.md`, `DataSpec.md`, `ComponentSpec.md`, `Tasks.md`。由人逐一審核詳細文件，確保架構設計完善。
+2. 展開技術文件 (Docs)：AI 基於 `Spec.md`，進一步生成細項文件：`.openspec/DevGuide.md`, `DataSpec.md`, `ComponentSpec.md`, `Tasks.md`。由人逐一審核詳確保文件設計完善。
 
     詳細規格文件在 `.openspec/` 目錄下：
     ├── .openspec/                  # 專案規格文件
@@ -56,7 +56,8 @@ flowchart TD
     │   ├── DevGuide.md             # 開發部署 Workflow 與環境指南
     │   ├── DevLog.md               # 開發日誌與決策備忘錄
     │   └── Tasks.md                # 專案任務與進度追蹤
+    註：DevLog.md 是開發階段產生的
 
-3. 實作程式碼 (Code)：AI 依據詳細文件來建立專案環境、實作功能元件並生成 Git Commits。由人來 Code Revie、測試除錯，與 AI 討論架構重構與踩坑解法。
+3. 實作程式碼 (Code)：AI 依據詳細文件來建立專案環境、實作功能元件並生成 Git Commits。由人來 Code Revie、測試除錯，與 AI 討論架構重構與踩雷解法。
 
 想知道詳細效果跟踩雷請看 Blog 系列文【用 AI 加速開發：20 天打造輕量版 Blog】。
