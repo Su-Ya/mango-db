@@ -1,9 +1,10 @@
 # mangoDB Blog
 
-Hi，這裡是 **mangoDB Blog** (https://su-ya.github.io/mango-db)。
+Hi，這裡是 **mangoDB Blog** ( https://su-ya.github.io/mango-db ) ，
 
 Blog 技術組合是 Next.js + HackMD，
-嘗試實驗 AI + Spec-Driven Dev (SDD) 的開發流程。
+開發流程嘗試實驗 AI + SDD (Spec-Driven Dev)。
+想知道詳細成果跟踩雷紀錄請看 Blog 系列文==【用 AI 加速開發：20 天打造輕量版 Blog】==。
 
 **開發流程**
 ```mermaid
@@ -59,5 +60,3 @@ flowchart TD
     註：DevLog.md 是開發階段產生的
 
 3. 實作程式碼 (Code)：AI 依據詳細文件來建立專案環境、實作功能元件並生成 Git Commits。由人來 Code Revie、測試除錯，與 AI 討論架構重構與踩雷解法。
-
-想知道詳細效果跟踩雷請看 Blog 系列文【用 AI 加速開發：20 天打造輕量版 Blog】。
