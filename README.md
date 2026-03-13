@@ -4,7 +4,7 @@ Hi，這裡是 **mangoDB Blog** ( https://su-ya.github.io/mango-db ) ，
 
 Blog 技術組合是 Next.js + HackMD，  
 開發流程嘗試實驗 AI + SDD (Spec-Driven Dev)。   
-想知道詳細成果跟踩雷紀錄請看 Blog 系列文**【用 AI 加速開發：20 天打造輕量版 Blog】**。
+想知道詳細成果跟踩雷紀錄請看 Blog 系列文 **【用 AI 加速開發：20 天打造輕量版 Blog】**。
 
 **開發流程**
 1. 定義原始文件 (Spec)：由人在 `.openspec/Spec.md` 中列出網站的核心需求、功能規劃與預期技術組合。
