@@ -91,6 +91,7 @@
         - 輸入框輸入文字，可依輸入文字模糊搜尋文章標題或文章內容，過濾出符合條件的文章集合
 
 **Next.js 目錄結構**
+```
 ...
 ├── src
 │   ├── app                     # Next.js App Router 頁面與佈局
@@ -127,6 +128,7 @@
 │   │   ├── data.ts             # 靜態文章資料與獲取邏輯
 │   │   └── markdown.ts     # Markdown 處理邏輯
 ...
+```
 
 **設計圖參考（from firebase studio: blog-a）：**
 home

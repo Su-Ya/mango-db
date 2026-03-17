@@ -276,6 +276,7 @@ const filteredArticles = React.useMemo(() => {
 用 **模組化 Parser** 將 HackMD 語法 (非原生 Markdown) 拆分為獨立的解析函式。
 
 **目錄結構**：
+```
 │   ├── lib/                    # 工具函式與資料獲取
 │   │   ├── ...
 │   │   ├── markdown-renderer.tsx # Markdown 渲染元件
@@ -285,7 +286,7 @@ const filteredArticles = React.useMemo(() => {
 │   │       ├── ...
 │   │       ├── hackmd-highlight.ts
 │   │       └── hackmd-callout.ts
-
+```
 **規範**：
 - `styles.css` 統一寫入所支援的 HackMD 語法樣式
   - 因只需在單篇文章頁面顯示語法樣式，故透過 `src/app/articles/[slug]/layout.tsx` 中的 `ArticleLayout` 來匯入
