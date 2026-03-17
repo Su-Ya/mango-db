@@ -14,11 +14,19 @@ interface PageProps {
 export async function generateStaticParams() {
 	const articles = await getAllArticles()
 	return articles.map((article) => {
-		// 本地開發 (npm run dev) 有比對 Bug (non-ASCII URL matching)，需給經過編碼的網址
+		/**
+		 * 在 dev 環境，Next.js 的路由比對器只吃 ASCII 碼的 URL，
+		 * 給中文字串 URL 會出現 500 server error。
+		 * 需把中文字串轉成 ASCII 碼的 URL。
+		 * 範例：encodeURIComponent('部落格')='%E9%83%A8%E8%90%BD%E6%A0%BC'
+		 */
 		if (process.env.NODE_ENV === "development") {
 			return { slug: encodeURIComponent(article.slug) }
 		}
-		// 正式打包 (npm run build)，需給中文原字串，讓 GitHub Pages 能找對應資料夾
+		/**
+		 * 在正式環境，build 出的資料夾名稱是中文，
+		 * GitHub Pages 伺服器需用原中文字串來找到對應資料夾。
+		 */
 		return { slug: article.slug }
 	})
 }
@@ -40,6 +48,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ArticleDetailPage({ params }: PageProps) {
 	const { slug } = await params
+	/**
+	 * 進入單頁文章時，確保最後是拿中文字串去找對應文章。
+	 * 範例：decodeURIComponent('%E9%83%A8%E8%90%BD%E6%A0%BC')='部落格'
+	 */
 	const decodedSlug = decodeURIComponent(slug)
 	const article = await getArticleBySlug(decodedSlug)
 
